@@ -1,4 +1,6 @@
+import 'package:cooper_app/features/persons/providers/persons_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './home.dart';
 
 void main() {
@@ -10,11 +12,16 @@ class CooperApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PersonsProvider()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
