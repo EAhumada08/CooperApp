@@ -5,6 +5,6 @@ class ListPersonsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Lista de Personas');
+    return Center(child: Text('Lista de Personas'));
   }
 }

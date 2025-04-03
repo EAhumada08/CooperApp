@@ -1,18 +1,10 @@
+import 'package:cooper_app/features/events/screens/list_events_page.dart';
 import 'package:cooper_app/features/persons/screens/list_persons_page.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-List<Widget> pagesList = [
-  ListPersonsPage(),
-  // Add your page widgets here
-  // Example:
-  // const Page1(),
-  // const Page2(),
-  // const Page3(),
-  // const Page4(),
-  // const Page5(),
-  // const Page6(),
-  // const Page7(),
-  // const Page8(),
-  // const Page9(),
-  // const Page10(),
+List<Widget> pagesList = <Widget>[ListPersonsPage(), ListEventsPage()];
+
+List<Tab> tabsBarList = <Tab>[
+  Tab(icon: Icon(Icons.person)),
+  Tab(icon: Icon(Icons.event)),
 ];
