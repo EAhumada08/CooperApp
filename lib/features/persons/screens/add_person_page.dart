@@ -1,4 +1,5 @@
 import 'package:cooper_app/features/persons/providers/persons_provider.dart';
+import 'package:cooper_app/models/person.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class _AddPersonPageState extends State<AddPersonPage> {
 
   @override
   Widget build(BuildContext context) {
-    var personsState = context.watch<PersonsProvider>();
+    PersonsProvider personsState = context.watch<PersonsProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,14 +39,20 @@ class _AddPersonPageState extends State<AddPersonPage> {
                 SizedBox(
                   width: 300,
                   child: TextField(
-                    decoration: InputDecoration(label: Text('Nombre')),
+                    decoration: InputDecoration(
+                      hintText: 'Nombre',
+                      border: OutlineInputBorder(),
+                    ),
                     controller: _nameController,
                   ),
                 ),
                 SizedBox(
                   width: 300,
                   child: TextField(
-                    decoration: InputDecoration(label: Text('Edad')),
+                    decoration: InputDecoration(
+                      hintText: 'Edad',
+                      border: OutlineInputBorder(),
+                    ),
                     controller: _edadController,
                   ),
                 ),
@@ -57,12 +64,15 @@ class _AddPersonPageState extends State<AddPersonPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Map<String, dynamic> person = {
-                      'name': _nameController.text,
-                      'edad': int.parse(_edadController.text),
-                    };
+                    Person newPerson = Person(
+                      name: _nameController.text,
+                      age: int.parse(_edadController.text),
+                    );
 
-                    personsState.addPerson(person);
+                    personsState.addPerson(newPerson);
+
+                    _nameController.clear();
+                    _edadController.clear();
                   },
                   child: Text('Agregar'),
                 ),

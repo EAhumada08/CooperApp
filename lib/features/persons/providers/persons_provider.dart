@@ -1,15 +1,12 @@
+import 'package:cooper_app/models/person.dart';
 import 'package:flutter/material.dart';
 
 class PersonsProvider extends ChangeNotifier {
-  List<Map<String, dynamic>> persons = [
-    {'name': 'Juan', 'edad': 25},
-    {'name': 'Maria', 'edad': 30},
-    {'name': 'Pedro', 'edad': 35},
-  ];
+  List<Person> persons = [];
 
-  List<Map<String, dynamic>> get getPersons => persons;
+  List<Person> get getPersons => persons;
 
-  void addPerson(Map<String, dynamic> person) {
+  void addPerson(Person person) {
     persons.add(person);
     notifyListeners();
   }

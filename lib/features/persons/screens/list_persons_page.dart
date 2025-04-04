@@ -1,5 +1,6 @@
 import 'package:cooper_app/features/persons/providers/persons_provider.dart';
 import 'package:cooper_app/features/persons/screens/add_person_page.dart';
+import 'package:cooper_app/models/person.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,18 +15,32 @@ class _ListPersonsPageState extends State<ListPersonsPage> {
   @override
   Widget build(BuildContext context) {
     var personsState = context.watch<PersonsProvider>();
-    List<Map<String, dynamic>> persons = personsState.getPersons;
+    List<Person> persons = personsState.getPersons;
 
     return Scaffold(
-      body: ListView(
-        children: [
-          for (var person in persons)
-            ListTile(
-              title: Text(person['name']),
-              subtitle: Text(person['edad'].toString()),
-            ),
-        ],
-      ),
+      body:
+          persons.isEmpty
+              ? Center(
+                child: Text(
+                  'No hay personas registradas',
+                  style: TextStyle(fontSize: 20),
+                ),
+              )
+              : ListView.builder(
+                itemCount: persons.length,
+                itemBuilder: (context, index) {
+                  Person person = persons[index];
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        child: Text(person.name[0].toUpperCase()),
+                      ),
+                      title: Text(person.name),
+                      subtitle: Text('Edad: ${person.age} años'),
+                    ),
+                  );
+                },
+              ),
       floatingActionButton: FloatingActionButton(
         onPressed:
             () => {

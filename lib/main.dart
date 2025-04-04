@@ -1,3 +1,4 @@
+import 'package:cooper_app/features/events/providers/events_providers.dart';
 import 'package:cooper_app/features/persons/providers/persons_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class CooperApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PersonsProvider()),
+        ChangeNotifierProvider(create: (context) => EventsProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
